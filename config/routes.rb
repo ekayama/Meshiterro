@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
-  root to: "homes#top"
-  devise_for :users
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  
-  resources :post_images, only: [:new, :index, :show]
-
-  get 'homes/about', to: 'homes#about', as: 'about'
+  root 'homes#top'
+  devise_for :users  
+  # ↓部分　resources :post_images, only: [:new, :create, :index, :show]　だと永遠にルーティングエラー出た
+  # 理由もよく分からないし、AIに全部投げたら以下のコード吐き出した。末尾にコントローラ：ポスト〜とか書いたら全部変わっちゃうんじゃないの？
+  # というかそもそも末尾に繋げていいいの？　全然分からないんだけど。
+  resources :post_images, only: [:new, :create, :index, :show], controller: 'post_image'
+  get 'homes/about' => 'homes#about', as: 'about'
 end
