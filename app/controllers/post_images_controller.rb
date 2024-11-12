@@ -1,7 +1,4 @@
-class PostImageController < ApplicationController
-  # ↑教材だと『PostImage’s’Controller』だけどそれでやるとエラーになる。
-  # routes.rbと同様にAIに投げて『PostImageController』と修正したら投稿画面が使えるようになった
-  # なんで？
+class PostImagesController < ApplicationController
 
   def new
     @post_image = PostImage.new
@@ -10,8 +7,11 @@ class PostImageController < ApplicationController
   def create
     @post_image = PostImage.new(post_image_params)
     @post_image.user_id = current_user.id
-    @post_image.save
-    redirect_to post_image_path(@post_image)
+    if @post_image.save
+      redirect_to post_images_path
+    else
+      render :new
+    end
   end
 
   def index
