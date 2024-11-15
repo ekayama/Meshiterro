@@ -2,12 +2,12 @@
 <html>
   <head>
     <title>Meshiterro</title>
-
+    <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-      
-        <script src="<script src="https://kit.fontawesome.com/2bd7263e69.js" crossorigin="anonymous"></script>
+
+    <script src="https://kit.fontawesome.com/xxxxxxxxxx.js" crossorigin="anonymous"></script>
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
@@ -47,6 +47,14 @@
       </nav>
     </header>
     <main class="mb-auto">
+      <div class="container">
+        <% if notice %>
+          <p class="my-3 alert alert-primary"><%= notice %></p>
+        <% end %>
+        <% if alert %>
+          <p class="my-3 alert alert-danger"><%= alert %></p>
+        <% end %>
+      </div>
     <%= yield %>
     </main>
     <footer class="bg-dark text-white pt-5 pb-4">
