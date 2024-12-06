@@ -9,9 +9,9 @@ Rails.application.routes.draw do
   end
 
   scope module: :public do
-    devise_for :users
+    devise_for :users, as: 'user_devise'
     root to: 'homes#top'
-    get 'homes/about', to: 'homes#about', as: :about
+    get 'homes/about', to: 'homes#about', as: :custom_about
     resources :post_images, only: [:new, :create, :index, :show, :destroy] do
       resource :favorites, only: [:create, :destroy]
       resources :post_comments, only: [:create, :destroy]
@@ -22,7 +22,7 @@ Rails.application.routes.draw do
   
   # get 'users/show'
   # get 'users/edit'
-  root 'homes#top'
+  #root 'homes#top'
   devise_for :users
   get 'homes/about' => 'homes#about', as: 'about'
   # ↓部分　resources :post_images, only: [:new, :create, :index, :show]　だと永遠にルーティングエラー出た
